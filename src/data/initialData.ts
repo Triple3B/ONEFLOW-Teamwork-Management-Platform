@@ -197,7 +197,7 @@ export const createInitialDemoWorkspace = () => {
         assigneeId: 'mem-4',
         createdBy: 'mem-2',
         createdAt: now - 14 * hour,
-        deadline: now - 1 * hour, // Quá hạn chưa nộp -> OVERDUE
+        deadline: now - 1 * hour,
         status: 'TODO',
         submissionUrl: '',
         submissionNote: '',
@@ -219,7 +219,7 @@ export const createInitialDemoWorkspace = () => {
         time: now - 72 * hour,
         actor: 'MR_TRIPLEF.EXE',
         type: 'SYSTEM',
-        text: 'Khởi tạo không gian làm việc ONEFLOW (Mã mời: K22IUH) cho thương hiệu NUMBERONE K22 · IUH.',
+        text: 'Khởi tạo không gian làm việc ONEFLOW (Mã mời: K22IUH) cho thương hiệu NUMBERONE K22 - IUH.',
       },
       {
         id: 'log-2',
