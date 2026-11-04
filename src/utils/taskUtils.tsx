@@ -6,7 +6,7 @@ import {
   Shield,
   UserCheck,
   FolderGit2,
-  Figma,
+  Palette,
   FileCode2,
   HardDrive,
   Presentation,
@@ -77,7 +77,7 @@ export const getCategoryMeta = (cat: string) => {
     case 'FIGMA':
       return {
         label: 'Figma / UI-UX',
-        icon: Figma,
+        icon: Palette,
         color: 'text-pink-300 bg-pink-950/60 border-pink-700/60',
       };
 
