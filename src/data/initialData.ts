@@ -1,7 +1,87 @@
 // ============================================================================
+// TYPESCRIPT INTERFACES (STRICT TYPE SAFETY FOR GITHUB ACTIONS BUILD)
+// ============================================================================
+export type RoleType = 'OWNER' | 'ADMIN' | 'MEMBER';
+export type TaskStatus = 'TODO' | 'PENDING_REVIEW' | 'DONE' | 'REJECTED' | 'OVERDUE';
+export type TaskCategory = 'GITHUB' | 'DRIVE' | 'FIGMA' | 'CAD' | 'SLIDE' | 'OTHER';
+export type LogType = 'SYSTEM' | 'APPROVE' | 'REJECT' | 'OVERRIDE' | 'SUBMIT' | 'TASK' | 'ROLE' | 'MEETING';
+
+export interface BrandConfig {
+  appName: string;
+  shortName: string;
+  slogan: string;
+  org: string;
+  university: string;
+  creator: string;
+  version: string;
+}
+
+export interface EmergencyMeeting {
+  active: boolean;
+  url: string;
+  message: string;
+  triggeredBy: string;
+  triggeredAt: number | null;
+}
+
+export interface Member {
+  id: string;
+  name: string;
+  studentId: string;
+  role: RoleType;
+  avatarColor: string;
+  specialty: string;
+  joinedAt: number;
+}
+
+export interface Task {
+  id: string;
+  title: string;
+  description: string;
+  category: TaskCategory | string;
+  assigneeId: string;
+  createdBy: string;
+  createdAt: number;
+  deadline: number;
+  status: TaskStatus;
+  submissionUrl: string;
+  submissionNote: string;
+  submittedAt: number | null;
+  isLate: boolean;
+  rejectCount: number;
+  lastRejectReason: string;
+  overrideFlag: boolean;
+  overrideReason: string;
+  overrideBy: string;
+  reviewedBy: string;
+  reviewedAt: number | null;
+}
+
+export interface ActivityLog {
+  id: string;
+  time: number;
+  actor: string;
+  type: LogType | string;
+  text: string;
+}
+
+export interface Workspace {
+  id: string;
+  name: string;
+  courseName: string;
+  className: string;
+  inviteCode: string;
+  createdAt: number;
+  emergencyMeeting: EmergencyMeeting;
+  members: Member[];
+  tasks: Task[];
+  logs: ActivityLog[];
+}
+
+// ============================================================================
 // CONSTANTS & BRANDING CONFIG (GATE 3 APPROVED)
 // ============================================================================
-export const BRAND = {
+export const BRAND: BrandConfig = {
   appName: 'ONEFLOW : TEAMWORK PLATFORM',
   shortName: 'ONEFLOW',
   slogan: 'One Team. One Flow. One Goal.',
@@ -19,7 +99,7 @@ export const CHANNEL_NAME = 'ONEFLOW_REALTIME_SYNC_CHANNEL';
 // ============================================================================
 // INITIAL RICH DEMO DATA (FOR INSTANT DEFENSE PRESENTATION)
 // ============================================================================
-export const createInitialDemoWorkspace = () => {
+export const createInitialDemoWorkspace = (): Workspace => {
   const now = Date.now();
   const hour = 3600 * 1000;
 
@@ -33,7 +113,7 @@ export const createInitialDemoWorkspace = () => {
 
     emergencyMeeting: {
       active: false,
-      url: 'https://google.com',
+      url: 'https://meet.google.com',
       message: 'Họp khẩn rà soát toàn bộ slide và kịch bản demo trước khi lên bục bảo vệ 15 phút!',
       triggeredBy: 'MR_TRIPLEF.EXE',
       triggeredAt: null,
@@ -111,7 +191,7 @@ export const createInitialDemoWorkspace = () => {
         createdAt: now - 40 * hour,
         deadline: now - 5 * hour,
         status: 'DONE',
-        submissionUrl: 'https://google.com',
+        submissionUrl: 'https://drive.google.com',
         submissionNote: 'Bản PRD đầy đủ từ FR-001 đến FR-007 kèm tiêu chí nghiệm thu.',
         submittedAt: now - 8 * hour,
         isLate: false,
@@ -155,7 +235,7 @@ export const createInitialDemoWorkspace = () => {
         createdAt: now - 36 * hour,
         deadline: now - 3 * hour,
         status: 'REJECTED',
-        submissionUrl: 'https://google.com',
+        submissionUrl: 'https://drive.google.com',
         submissionNote: 'Nộp bản vẽ sơ đồ khối kiến trúc lần 1.',
         submittedAt: now - 2 * hour,
         isLate: true,
@@ -245,3 +325,6 @@ export const createInitialDemoWorkspace = () => {
     ],
   };
 };
+
+// Default export fallback in case any file uses `import initialData from './initialData'`
+export default createInitialDemoWorkspace;
