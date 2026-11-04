@@ -1,7 +1,7 @@
 // ============================================================================
 // CONSTANTS & BRANDING CONFIG (GATE 3 APPROVED)
 // ============================================================================
-const BRAND = {
+export const BRAND = {
   appName: 'ONEFLOW : TEAMWORK PLATFORM',
   shortName: 'ONEFLOW',
   slogan: 'One Team. One Flow. One Goal.',
@@ -11,15 +11,15 @@ const BRAND = {
   version: 'v1.0.0-MVP (Gate 3 Baseline)',
 };
 
-const STORAGE_KEY_WORKSPACES = 'ONEFLOW_WORKSPACES_V1';
-const SESSION_KEY_ACTIVE_WS = 'ONEFLOW_TAB_WS_ID';
-const SESSION_KEY_ACTIVE_MEMBER = 'ONEFLOW_TAB_MEMBER_ID';
-const CHANNEL_NAME = 'ONEFLOW_REALTIME_SYNC_CHANNEL';
+export const STORAGE_KEY_WORKSPACES = 'ONEFLOW_WORKSPACES_V1';
+export const SESSION_KEY_ACTIVE_WS = 'ONEFLOW_TAB_WS_ID';
+export const SESSION_KEY_ACTIVE_MEMBER = 'ONEFLOW_TAB_MEMBER_ID';
+export const CHANNEL_NAME = 'ONEFLOW_REALTIME_SYNC_CHANNEL';
 
 // ============================================================================
 // INITIAL RICH DEMO DATA (FOR INSTANT DEFENSE PRESENTATION)
 // ============================================================================
-const createInitialDemoWorkspace = () => {
+export const createInitialDemoWorkspace = () => {
   const now = Date.now();
   const hour = 3600 * 1000;
 
@@ -30,6 +30,7 @@ const createInitialDemoWorkspace = () => {
     className: 'DHHTTT18B - K22 · IUH',
     inviteCode: 'K22IUH',
     createdAt: now - 72 * hour,
+
     emergencyMeeting: {
       active: false,
       url: 'https://meet.google.com/k22-iuh-flow',
@@ -37,6 +38,7 @@ const createInitialDemoWorkspace = () => {
       triggeredBy: 'MR_TRIPLEF.EXE',
       triggeredAt: null,
     },
+
     members: [
       {
         id: 'mem-1',
@@ -75,6 +77,7 @@ const createInitialDemoWorkspace = () => {
         joinedAt: now - 66 * hour,
       },
     ],
+
     tasks: [
       {
         id: 'TSK-101',
@@ -209,6 +212,7 @@ const createInitialDemoWorkspace = () => {
         reviewedAt: null,
       },
     ],
+
     logs: [
       {
         id: 'log-1',
