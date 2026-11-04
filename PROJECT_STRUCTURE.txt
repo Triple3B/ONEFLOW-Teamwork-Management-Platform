@@ -1,0 +1,7 @@
+ONEFLOW project split
+- src/App.tsx: application state, business actions, and main UI
+- src/data/initialData.ts: branding constants, storage keys, demo workspace
+- src/utils/taskUtils.tsx: date/status/category/role helper functions
+- src/main.tsx: React entry point
+- src/index.css: Tailwind directives and global styles
+- root files: Vite, TypeScript, Tailwind, npm configuration and README
