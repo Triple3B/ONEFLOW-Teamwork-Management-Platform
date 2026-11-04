@@ -1,87 +1,7 @@
 // ============================================================================
-// TYPESCRIPT INTERFACES (STRICT TYPE SAFETY FOR GITHUB ACTIONS BUILD)
-// ============================================================================
-export type RoleType = 'OWNER' | 'ADMIN' | 'MEMBER';
-export type TaskStatus = 'TODO' | 'PENDING_REVIEW' | 'DONE' | 'REJECTED' | 'OVERDUE';
-export type TaskCategory = 'GITHUB' | 'DRIVE' | 'FIGMA' | 'CAD' | 'SLIDE' | 'OTHER';
-export type LogType = 'SYSTEM' | 'APPROVE' | 'REJECT' | 'OVERRIDE' | 'SUBMIT' | 'TASK' | 'ROLE' | 'MEETING';
-
-export interface BrandConfig {
-  appName: string;
-  shortName: string;
-  slogan: string;
-  org: string;
-  university: string;
-  creator: string;
-  version: string;
-}
-
-export interface EmergencyMeeting {
-  active: boolean;
-  url: string;
-  message: string;
-  triggeredBy: string;
-  triggeredAt: number | null;
-}
-
-export interface Member {
-  id: string;
-  name: string;
-  studentId: string;
-  role: RoleType;
-  avatarColor: string;
-  specialty: string;
-  joinedAt: number;
-}
-
-export interface Task {
-  id: string;
-  title: string;
-  description: string;
-  category: TaskCategory | string;
-  assigneeId: string;
-  createdBy: string;
-  createdAt: number;
-  deadline: number;
-  status: TaskStatus;
-  submissionUrl: string;
-  submissionNote: string;
-  submittedAt: number | null;
-  isLate: boolean;
-  rejectCount: number;
-  lastRejectReason: string;
-  overrideFlag: boolean;
-  overrideReason: string;
-  overrideBy: string;
-  reviewedBy: string;
-  reviewedAt: number | null;
-}
-
-export interface ActivityLog {
-  id: string;
-  time: number;
-  actor: string;
-  type: LogType | string;
-  text: string;
-}
-
-export interface Workspace {
-  id: string;
-  name: string;
-  courseName: string;
-  className: string;
-  inviteCode: string;
-  createdAt: number;
-  emergencyMeeting: EmergencyMeeting;
-  members: Member[];
-  tasks: Task[];
-  logs: ActivityLog[];
-}
-
-// ============================================================================
 // CONSTANTS & BRANDING CONFIG (GATE 3 APPROVED)
 // ============================================================================
-export const BRAND: BrandConfig = {
+export const BRAND = {
   appName: 'ONEFLOW : TEAMWORK PLATFORM',
   shortName: 'ONEFLOW',
   slogan: 'One Team. One Flow. One Goal.',
@@ -99,7 +19,7 @@ export const CHANNEL_NAME = 'ONEFLOW_REALTIME_SYNC_CHANNEL';
 // ============================================================================
 // INITIAL RICH DEMO DATA (FOR INSTANT DEFENSE PRESENTATION)
 // ============================================================================
-export const createInitialDemoWorkspace = (): Workspace => {
+export const createInitialDemoWorkspace = () => {
   const now = Date.now();
   const hour = 3600 * 1000;
 
@@ -116,7 +36,7 @@ export const createInitialDemoWorkspace = (): Workspace => {
       url: 'https://meet.google.com',
       message: 'Họp khẩn rà soát toàn bộ slide và kịch bản demo trước khi lên bục bảo vệ 15 phút!',
       triggeredBy: 'MR_TRIPLEF.EXE',
-      triggeredAt: null,
+      triggeredAt: null as number | null,
     },
 
     members: [
@@ -171,7 +91,7 @@ export const createInitialDemoWorkspace = (): Workspace => {
         status: 'DONE',
         submissionUrl: 'https://github.com',
         submissionNote: 'Đã hoàn thiện kiến trúc core v1.0.0, pass toàn bộ 4 bản vá Gate 3.',
-        submittedAt: now - 18 * hour,
+        submittedAt: (now - 18 * hour) as number | null,
         isLate: false,
         rejectCount: 0,
         lastRejectReason: '',
@@ -179,7 +99,7 @@ export const createInitialDemoWorkspace = (): Workspace => {
         overrideReason: '',
         overrideBy: '',
         reviewedBy: 'MR_TRIPLEF.EXE',
-        reviewedAt: now - 16 * hour,
+        reviewedAt: (now - 16 * hour) as number | null,
       },
       {
         id: 'TSK-102',
@@ -193,7 +113,7 @@ export const createInitialDemoWorkspace = (): Workspace => {
         status: 'DONE',
         submissionUrl: 'https://drive.google.com',
         submissionNote: 'Bản PRD đầy đủ từ FR-001 đến FR-007 kèm tiêu chí nghiệm thu.',
-        submittedAt: now - 8 * hour,
+        submittedAt: (now - 8 * hour) as number | null,
         isLate: false,
         rejectCount: 0,
         lastRejectReason: '',
@@ -201,7 +121,7 @@ export const createInitialDemoWorkspace = (): Workspace => {
         overrideReason: '',
         overrideBy: '',
         reviewedBy: 'MR_TRIPLEF.EXE',
-        reviewedAt: now - 7 * hour,
+        reviewedAt: (now - 7 * hour) as number | null,
       },
       {
         id: 'TSK-103',
@@ -215,7 +135,7 @@ export const createInitialDemoWorkspace = (): Workspace => {
         status: 'PENDING_REVIEW',
         submissionUrl: 'https://figma.com',
         submissionNote: 'Đã bổ sung màn hình Modal Báo cáo Hành chính theo góp ý lần 1.',
-        submittedAt: now - 1 * hour,
+        submittedAt: (now - 1 * hour) as number | null,
         isLate: false,
         rejectCount: 1,
         lastRejectReason: 'Bản thiết kế đầu tiên thiếu bố cục Quốc hiệu và chữ ký trong trang in PDF.',
@@ -223,7 +143,7 @@ export const createInitialDemoWorkspace = (): Workspace => {
         overrideReason: '',
         overrideBy: '',
         reviewedBy: '',
-        reviewedAt: null,
+        reviewedAt: null as number | null,
       },
       {
         id: 'TSK-104',
@@ -237,7 +157,7 @@ export const createInitialDemoWorkspace = (): Workspace => {
         status: 'REJECTED',
         submissionUrl: 'https://drive.google.com',
         submissionNote: 'Nộp bản vẽ sơ đồ khối kiến trúc lần 1.',
-        submittedAt: now - 2 * hour,
+        submittedAt: (now - 2 * hour) as number | null,
         isLate: true,
         rejectCount: 2,
         lastRejectReason: 'Sơ đồ thiếu nhánh xử lý Duyệt Ngoại Lệ (Human Override - FR-005) và sai ký hiệu chuẩn.',
@@ -245,7 +165,7 @@ export const createInitialDemoWorkspace = (): Workspace => {
         overrideReason: '',
         overrideBy: '',
         reviewedBy: 'Nguyễn Minh Quân',
-        reviewedAt: now - 1 * hour,
+        reviewedAt: (now - 1 * hour) as number | null,
       },
       {
         id: 'TSK-105',
@@ -259,7 +179,7 @@ export const createInitialDemoWorkspace = (): Workspace => {
         status: 'DONE',
         submissionUrl: 'https://canva.com',
         submissionNote: 'Slide hoàn chỉnh kèm kịch bản chia vai demo trực tiếp.',
-        submittedAt: now - 2 * hour,
+        submittedAt: (now - 2 * hour) as number | null,
         isLate: true,
         rejectCount: 0,
         lastRejectReason: '',
@@ -267,64 +187,9 @@ export const createInitialDemoWorkspace = (): Workspace => {
         overrideReason: 'Thành viên hỗ trợ dựng lại video demo cho cả nhóm nên nộp muộn 2 tiếng (Đã báo trước Trưởng nhóm).',
         overrideBy: 'MR_TRIPLEF.EXE',
         reviewedBy: 'MR_TRIPLEF.EXE',
-        reviewedAt: now - 1.5 * hour,
+        reviewedAt: (now - 1.5 * hour) as number | null,
       },
       {
         id: 'TSK-106',
         title: 'Video Quay Màn Hình Kiểm Thử Đa Tab & Phụ Lục Báo Cáo',
-        description: 'Quay clip 2 phút dự phòng trường hợp rớt mạng tại phòng bảo vệ, đóng gói link Google Drive.',
-        category: 'DRIVE',
-        assigneeId: 'mem-4',
-        createdBy: 'mem-2',
-        createdAt: now - 14 * hour,
-        deadline: now - 1 * hour,
-        status: 'TODO',
-        submissionUrl: '',
-        submissionNote: '',
-        submittedAt: null,
-        isLate: false,
-        rejectCount: 0,
-        lastRejectReason: '',
-        overrideFlag: false,
-        overrideReason: '',
-        overrideBy: '',
-        reviewedBy: '',
-        reviewedAt: null,
-      },
-    ],
-
-    logs: [
-      {
-        id: 'log-1',
-        time: now - 72 * hour,
-        actor: 'MR_TRIPLEF.EXE',
-        type: 'SYSTEM',
-        text: 'Khởi tạo không gian làm việc ONEFLOW (Mã mời: K22IUH) cho thương hiệu NUMBERONE K22 - IUH.',
-      },
-      {
-        id: 'log-2',
-        time: now - 16 * hour,
-        actor: 'MR_TRIPLEF.EXE',
-        type: 'APPROVE',
-        text: 'Đã DUYỆT (APPROVE) task [TSK-101] của MR_TRIPLEF.EXE.',
-      },
-      {
-        id: 'log-3',
-        time: now - 1.5 * hour,
-        actor: 'MR_TRIPLEF.EXE',
-        type: 'OVERRIDE',
-        text: 'Đã DUYỆT NGOẠI LỆ (Human Override) cho task [TSK-105] của Trần Thảo Vy. Lý do: Hỗ trợ dựng video demo cho nhóm.',
-      },
-      {
-        id: 'log-4',
-        time: now - 1 * hour,
-        actor: 'Nguyễn Minh Quân',
-        type: 'REJECT',
-        text: 'Đã TỪ CHỐI (REJECT) task [TSK-104] của Lê Hoàng Nam. Lý do: Sơ đồ thiếu nhánh xử lý Duyệt Ngoại Lệ.',
-      },
-    ],
-  };
-};
-
-// Default export fallback in case any file uses `import initialData from './initialData'`
-export default createInitialDemoWorkspace;
+        description: '
