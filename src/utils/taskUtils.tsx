@@ -1,6 +1,4 @@
-
 import React from 'react';
-
 import {
   Crown,
   Shield,
@@ -55,7 +53,11 @@ export const getEffectiveTaskStatus = (
     return 'REJECTED';
   }
 
-  if (task.status === 'TODO' && now > (task.deadline ?? Infinity)) {
+  if (
+    task.status === 'TODO' &&
+    task.deadline != null &&
+    now > task.deadline
+  ) {
     return 'OVERDUE';
   }
 
